@@ -12,4 +12,4 @@ fi
 # make sure we're in the root of the app dir
 cd "$APP_DIR"
 
-sed 's/github.com/$GIT_OAUTH@github.com/g' .gitmodules
+sed "s/github.com/$GIT_OAUTH@github.com/g" .gitmodules
