@@ -19,7 +19,7 @@ if [[ -z $GIT_REPO_URL ]]; then
     exit 1
 fi
 
-sed "s/github.com/$GIT_OAUTH@github.com/g" $(basename $GIT_REPO_URL)
+GIT_REPO_URL_OAUTH=$(sed "s/github.com/$GIT_OAUTH@github.com/g" <<<$GIT_REPO_URL)
 # make sure we're in the root of the app dir
 cd "$APP_DIR"
 
@@ -35,7 +35,7 @@ git config core.sparseCheckout true
 echo ".gitmodules" > .git/info/sparse-checkout
 
 # add the repo as a remote and fetch the repo's history
-git remote add origin "$GIT_REPO_URL"
+git remote add origin "$GIT_REPO_URL_OAUTH"
 
 # checkout the revision that's being deployed
 git fetch -q --depth 1 origin -a > /dev/null
