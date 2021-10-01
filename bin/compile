@@ -4,8 +4,8 @@ APP_DIR="$1"
 ENV_DIR="$3"
 
 # load required environment variables
-GIT_OAUTH = $(<"$ENV_DIR/GIT_OAUTH")
-if [[ -z $GIT_OAUTH]]; then
+GIT_OAUTH=$(<"$ENV_DIR/GIT_OAUTH")
+if [[ -z $GIT_OAUTH ]]; then
     echo "Did you forget to set OAUTH Token?"
     exit 1
 fi
