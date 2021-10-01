@@ -19,7 +19,7 @@ if [[ -z $GIT_REPO_URL ]]; then
     exit 1
 fi
 
-sed "s/github.com/$GIT_OAUTH@github.com/g" $GIT_REPO_URL
+sed "s/github.com/$GIT_OAUTH@github.com/g" $(basename $GIT_REPO_URL)
 # make sure we're in the root of the app dir
 cd "$APP_DIR"
 
