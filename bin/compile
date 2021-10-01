@@ -24,7 +24,6 @@ if [[ -z $GIT_REPO_URL ]]; then
 fi
 
 GIT_REPO_URL_OAUTH=$(sed "s/github.com/$GIT_USERNAME:$GIT_OAUTH@github.com/g" <<<$GIT_REPO_URL)
-echo "-----> Created new gitlink $GIT_REPO_URL_OAUTH"
 # make sure we're in the root of the app dir
 cd "$APP_DIR"
 
@@ -47,7 +46,7 @@ git remote add origin "$GIT_REPO_URL_OAUTH"
 git fetch -q --depth 1 origin -a > /dev/null
 git checkout -q ${SOURCE_VERSION:-main} > /dev/null
 echo "-----> Fetched shallow history from $GIT_REPO_URL_OAUTH"
-sed "s/github.com/$GIT_USERNAME:$GIT_OAUTH@github.com/g" .gitmodules
+sed -i "s/github.com/$GIT_USERNAME:$GIT_OAUTH@github.com/g" .gitmodules
 cat .gitmodules
 # initialize all the submodules
 git submodule -q update --init --recursive
