@@ -5,9 +5,13 @@ ENV_DIR="$3"
 
 # load required environment variables
 GIT_REPO_URL=$(<"$ENV_DIR/GIT_REPO_URL")
-GIT_USERNAME=$(<"$ENV_DIR/USERNAME")
+GIT_USERNAME=$(<"$ENV_DIR/GIT_USERNAME")
 GIT_OAUTH=$(<"$ENV_DIR/GIT_OAUTH")
 
+if [[ -z $GIT_USERNAME ]]; then
+    echo "Did you forget to set GIT_USERNAME?"
+    exit 1
+fi
 
 if [[ -z $GIT_OAUTH ]]; then
     echo "Did you forget to set OAUTH Token?"
