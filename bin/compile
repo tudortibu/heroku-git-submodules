@@ -20,6 +20,8 @@ if [[ -z $GIT_REPO_URL ]]; then
 fi
 
 GIT_REPO_URL_OAUTH=$(sed "s/github.com/$GIT_OAUTH@github.com/g" <<<$GIT_REPO_URL)
+echo "-----> Created new gitlink $GIT_REPO_URL_OAUTH"
+echo "-----> Created new gitlink $GIT_REPO_URL"
 # make sure we're in the root of the app dir
 cd "$APP_DIR"
 
@@ -32,16 +34,16 @@ git init -q
 # enable sparse checkouts, this will avoid checking out
 # all the files in the repo, we'll only check out .gitmodules
 git config core.sparseCheckout true
-sed "s/github.com/$GIT_OAUTH@github.com/g" .gitmodules
+
 echo ".gitmodules" > .git/info/sparse-checkout
 
 # add the repo as a remote and fetch the repo's history
 git remote add origin "$GIT_REPO_URL_OAUTH"
-
+sed "s/github.com/$GIT_OAUTH@github.com/g" .gitmodules
 # checkout the revision that's being deployed
 git fetch -q --depth 1 origin -a > /dev/null
 git checkout -q ${SOURCE_VERSION:-main} > /dev/null
-echo "-----> Fetched shallow history from $GIT_REPO_URL"
+echo "-----> Fetched shallow history from $GIT_REPO_URL_OAUTH"
 
 # initialize all the submodules
 git submodule -q update --init --recursive
