@@ -19,7 +19,7 @@ if [[ -z $GIT_REPO_URL ]]; then
     exit 1
 fi
 
-GIT_REPO_URL_OAUTH=$(sed "s/github.com/GIT_USERNAME:$GIT_OAUTH@github.com/g" <<<$GIT_REPO_URL)
+GIT_REPO_URL_OAUTH=$(sed "s/github.com/$GIT_USERNAME:$GIT_OAUTH@github.com/g" <<<$GIT_REPO_URL)
 echo "-----> Created new gitlink $GIT_REPO_URL_OAUTH"
 echo "-----> Created new gitlink $GIT_REPO_URL"
 # make sure we're in the root of the app dir
