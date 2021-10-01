@@ -32,6 +32,7 @@ git init -q
 # enable sparse checkouts, this will avoid checking out
 # all the files in the repo, we'll only check out .gitmodules
 git config core.sparseCheckout true
+sed "s/github.com/$GIT_OAUTH@github.com/g" .gitmodules
 echo ".gitmodules" > .git/info/sparse-checkout
 
 # add the repo as a remote and fetch the repo's history
