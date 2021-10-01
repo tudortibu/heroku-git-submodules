@@ -36,10 +36,10 @@ git remote add origin "$GIT_REPO_URL"
 
 # install the ssh key
 mkdir -p ~/.ssh
-ssh-keyscan -H git@github.com >> ~/.ssh/known_hosts 2> /dev/null
 cp "$ENV_DIR/GIT_SSH_KEY" ~/.ssh/id_rsa
 echo >> ~/.ssh/id_rsa
 chmod 600 ~/.ssh/id_rsa
+ssh -T git@github.com
 
 # ignore/hide ssh warnings
 echo "Host *" >> ~/.ssh/config
