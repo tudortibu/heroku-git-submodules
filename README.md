@@ -1,5 +1,5 @@
 This Heroku buildpack was inspired by another [buildpack](https://github.com/SectorLabs/heroku-buildpack-git-submodule.git)
-This build pack supports the use of GitHub's OAuth tokens instead of SSH.
+This build pack supports the use of GitHub's OAuth tokens instead of SSH for submodules.
 
 ## Usage
 
